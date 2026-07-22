@@ -11,6 +11,12 @@ export default fp(async (fastify) => {
 		engine: {
 			eta: new Eta(),
 		},
-		root: path.join(__dirname, "../views"),
+		templates: path.join(import.meta.dirname, "../views"), // go to previous directory so it does not point to plugin folder
+		options: {
+			// Uses .eta extension for templates instead of default .html
+			extension: "eta",
+		},
 	});
 });
+
+// usage: fastify.view("")
